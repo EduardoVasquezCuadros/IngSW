@@ -17,6 +17,7 @@ class CheckViewController: UIViewController {
         super.viewDidLoad()
     }
     
+//  Verifica si el usuario esta registrado como requerido y muestra esta información
     func setupImage(check: Bool, name: String, lastName: String, identification: String) {
         if checkImage != nil {
             let imageName = !check ? "check.png" : "error.png"
@@ -28,6 +29,7 @@ class CheckViewController: UIViewController {
     }
 }
 
+// extensión que pone la primera letra de una palabra en mayuscula
 extension String {
     func capitalizingFirstLetter() -> String {
         return prefix(1).capitalized + dropFirst()

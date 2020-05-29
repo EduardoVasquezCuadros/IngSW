@@ -13,6 +13,7 @@ import Firebase
 class Model: NSObject {
     var firDatabaseReference = Database.database().reference()
 
+//  Función que se encarga en traer toda la información del ciudadano y retornarla a la función que la solicito
     func citizen(response: @escaping ([Citizen]) -> Void) {
         
         var citizenArray = [Citizen]()
@@ -45,6 +46,7 @@ class Model: NSObject {
         
     }
     
+//  Función que se encarga en traer toda la información del funcionario y retornarla a la función que la solicito
     func agent(response: @escaping ([Agent]) -> Void) {
         var agentArray = [Agent]()
                 
@@ -75,7 +77,8 @@ class Model: NSObject {
             self.firDatabaseReference.removeAllObservers()
         })
     }
-    
+
+//  Función que se encarga en traer toda la información de la fuerza publica disponible y retornarla a la función que la solicito
     func force(response: @escaping ([String]) -> Void) {
         var forceArray = [String]()
                 
@@ -98,6 +101,7 @@ class Model: NSObject {
         })
     }
     
+//  Función que se encarga en traer toda la información de rango de fuerza publica disponible y retornarla a la función que la solicito
     func status(response: @escaping ([String]) -> Void) {
         var statusArray = [String]()
                 
@@ -119,6 +123,7 @@ class Model: NSObject {
         })
     }
     
+//  Función que se encarga de registrar al funcionario de la fuerza publica y retorna la respuesta del servidor
     func toRegister(agent:[String:Any], response: @escaping (String) -> Void) {
         
         firDatabaseReference = Database.database().reference()
@@ -135,6 +140,7 @@ class Model: NSObject {
     }
 }
 
+// Estructura local del ciudadano
 struct Citizen {
     var name: String
     var lastName: String
@@ -142,6 +148,7 @@ struct Citizen {
     var requered: Bool
 }
 
+// Estructura local del funcionario 
 struct Agent {
     var name: String
     var lastName: String

@@ -27,6 +27,7 @@ class RegisterViewController: UIViewController {
         configPickerStatus()
     }
     
+//  Traer información de la base de datos y agregarla a la interfaz grafica
     func configPickerForce() {
         let model = Model()
         model.force { (force) in
@@ -41,6 +42,7 @@ class RegisterViewController: UIViewController {
         }
     }
     
+//  Traer información de la base de datos y agregarla a la interfaz grafica
     func configPickerStatus() {
         let model = Model()
         model.status { (statusString) in
@@ -55,6 +57,7 @@ class RegisterViewController: UIViewController {
         }
     }
     
+//  Función que verifica la existencia de todos los datos de registro y hace el registro si no existe el usuario en la base de datos
     @IBAction func registerTapped(_ sender: Any) {
         var registred = false
         
@@ -98,6 +101,7 @@ class RegisterViewController: UIViewController {
         }
     }
     
+//  Función que verificaque todos los datos ingresados por el usuario cumplan con lo solicitado por la base de datos
     func checkingData() -> Bool {
         guard let email = emailTextField.text,
             let pass = passTextField.text,
@@ -129,6 +133,7 @@ class RegisterViewController: UIViewController {
         return true
     }
     
+//  Verificación del formato del email
     func isValidEmail(email: String) -> Bool {
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
         
@@ -136,6 +141,7 @@ class RegisterViewController: UIViewController {
         return emailPred.evaluate(with: email)
     }
     
+//  Verificación de los datos minimos de la contraseña
     func validate(password: String) -> Bool {
         let capitalLetterRegEx  = ".*[A-Z]+.*"
         let texttest = NSPredicate(format:"SELF MATCHES %@", capitalLetterRegEx)

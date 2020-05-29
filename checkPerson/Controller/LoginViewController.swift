@@ -22,7 +22,8 @@ class LoginViewController: UIViewController {
     
         hideKeyboardWhenTappedAround()
     }
-
+    
+//  Función que verifica si el usuario ya esta registrado y permite ingresar
     @IBAction func login(_ sender: Any) {
         var logged = false
         let model = Model()

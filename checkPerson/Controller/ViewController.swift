@@ -24,6 +24,7 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate, 
     var imageLayer: AVCaptureVideoPreviewLayer!
     var name: String = ""
     
+//    Configuración de la interfaz gráfica
     override func viewDidLoad() {
         super.viewDidLoad()
         setupCamera()
@@ -41,6 +42,7 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate, 
         hideKeyboardWhenTappedAround()
     }
     
+//  Configuración de la camara del dispositivo
     func setupCamera() {
         session.sessionPreset = AVCaptureSession.Preset.photo
         let captureDevice = AVCaptureDevice.default(for: AVMediaType.video)
@@ -53,6 +55,7 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate, 
         session.addOutput(deviceOutput)
     }
     
+//  Boton de busqueda por texto
     @IBAction func SearchByText(_ sender: Any) {
         guard let identification = identificationTextField.text else {
             return
@@ -69,12 +72,13 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate, 
         }
     }
     
+//  Botton de búsqueda por scanner
     @IBAction func searchByCamera(_ sender: Any) {
         startLiveVideo()
         self.barcodeDetector = vision.barcodeDetector()
     }
     
-    
+//  Búsqueda de la cédula de la ciudadania
     func search(identification: String, citizen: [Citizen]) {
         var founded = false
         var name = ""
@@ -93,6 +97,19 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate, 
         self.showState(check: founded, name: name, lastName: lastName, identification: crimeId)
     }
     
+//  Configuración de la camara del dispositivo
+    private func startLiveVideo() {
+        identificationTextField.resignFirstResponder()
+        
+        imageLayer = AVCaptureVideoPreviewLayer(session: session)
+        imageLayer.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height)
+        imageLayer.videoGravity = .resizeAspectFill
+        self.view.layer.addSublayer(imageLayer)
+        
+        session.startRunning()
+    }
+    
+//  Función que se acciona automaticamente cuando el scanner consigue un código PDF147
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         
         if let barcodeDetector = self.barcodeDetector {
@@ -117,17 +134,7 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate, 
         }
     }
     
-    private func startLiveVideo() {
-        identificationTextField.resignFirstResponder()
-        
-        imageLayer = AVCaptureVideoPreviewLayer(session: session)
-        imageLayer.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height)
-        imageLayer.videoGravity = .resizeAspectFill
-        self.view.layer.addSublayer(imageLayer)
-        
-        session.startRunning()
-    }
-    
+//  Se presenta la pantalla que indica si el ciudadano es requerido o no
     private func showState(check: Bool, name: String, lastName: String, identification: String) {
         let viewC = CheckViewController()
         self.present(viewC, animated: true, completion: nil)
