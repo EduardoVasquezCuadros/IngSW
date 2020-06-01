@@ -85,12 +85,12 @@ class Model: NSObject {
         _ = firDatabaseReference.observe(.value, with: { (snapshot) in
             let postDict = snapshot.value as? [String : Any] ?? [:]
             
-            guard let agents = postDict["fuerza"] as? [Any] else {
+            guard let agents = postDict["fuerza"] as? [String: Any] else {
                 return
             }
             
             for forces in agents {
-                guard let data = forces as? [String: Any],
+                guard let data = forces.value as? [String: Any],
                     let force = data["nombre"] as? String else {
                         return
                 }
@@ -107,13 +107,13 @@ class Model: NSObject {
                 
         _ = firDatabaseReference.observe(.value, with: { (snapshot) in
             let postDict = snapshot.value as? [String : Any] ?? [:]
-            guard let agents = postDict["rango"] as? [Any] else {
+            guard let agents = postDict["rango"] as? [String: Any] else {
                 return
             }
             
             for forces in agents {
-                guard let data = forces as? [String: Any],
-                    let force = data["rango"] as? String else {
+                guard let data = forces.value as? [String: Any],
+                    let force = data["nombre"] as? String else {
                         return
                 }
                 statusArray.append(force)

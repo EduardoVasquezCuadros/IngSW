@@ -75,7 +75,7 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate, 
 //  Botton de búsqueda por scanner
     @IBAction func searchByCamera(_ sender: Any) {
         startLiveVideo()
-        self.barcodeDetector = vision.barcodeDetector()
+        barcodeDetector = vision.barcodeDetector()
     }
     
 //  Búsqueda de la cédula de la ciudadania

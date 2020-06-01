@@ -19,9 +19,14 @@ class RegisterViewController: UIViewController {
     @IBOutlet weak var passTextField: UITextField!
     @IBOutlet weak var registerButton: UIButton!
     
+//  Configuración de la interfaz gráfica
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        registerButton.layer.cornerRadius = 5
+        registerButton.layer.borderWidth = 1
+        registerButton.layer.borderColor = UIColor.gray.cgColor
+
         hideKeyboardWhenTappedAround()
         configPickerForce()
         configPickerStatus()
@@ -125,8 +130,8 @@ class RegisterViewController: UIViewController {
             return false
         }
         
-        if !validate(password: pass) {
-            self.alertView(title: "Registro", message: "Recuerde que su contraseña debe tener una Mayúscula un número")
+        if !validate(password: pass) && pass.count >= 8  {
+            self.alertView(title: "Registro", message: "Recuerde que su contraseña debe tener una mayúscula un número y debe ser mayor a 7 caracteres")
             return false
         }
         
@@ -150,11 +155,7 @@ class RegisterViewController: UIViewController {
         let numberRegEx  = ".*[0-9]+.*"
         let texttest1 = NSPredicate(format:"SELF MATCHES %@", numberRegEx)
         guard texttest1.evaluate(with: password) else { return false }
-        
-        //        let specialCharacterRegEx  = ".*[!&^%$#@()/_*+-]+.*"
-        //        let texttest2 = NSPredicate(format:"SELF MATCHES %@", specialCharacterRegEx)
-        //        guard texttest2.evaluate(with: password) else { return false }
-        
+                
         return true
     }
 }
@@ -172,9 +173,7 @@ extension UIViewController {
     
     func alertView(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        
         self.present(alert, animated: true)
     }
 }

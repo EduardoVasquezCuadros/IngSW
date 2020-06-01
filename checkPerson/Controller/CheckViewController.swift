@@ -12,7 +12,8 @@ class CheckViewController: UIViewController {
     
     @IBOutlet weak var checkImage: UIImageView!
     @IBOutlet weak var informationText: UILabel!
-    
+
+//    Configuración de la interfaz gráfica
     override func viewDidLoad() {
         super.viewDidLoad()
     }

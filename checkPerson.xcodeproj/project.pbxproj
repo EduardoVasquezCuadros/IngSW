@@ -30,7 +30,7 @@
 		7223DB3A2476ECB100280FD9 /* CheckViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckViewController.swift; sourceTree = "<group>"; };
 		7223DB3B2476ECB100280FD9 /* CheckViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CheckViewController.xib; sourceTree = "<group>"; };
 		7223DB3E2477657900280FD9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		72A5DD362473504300ACC17F /* checkPerson.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = checkPerson.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		72A5DD362473504300ACC17F /* Registraduría.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Registraduría.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		72A5DD392473504300ACC17F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		72A5DD3B2473504300ACC17F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		72A5DD3D2473504300ACC17F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -104,7 +104,7 @@
 		72A5DD372473504300ACC17F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				72A5DD362473504300ACC17F /* checkPerson.app */,
+				72A5DD362473504300ACC17F /* Registraduría.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -153,7 +153,7 @@
 			);
 			name = checkPerson;
 			productName = checkPerson;
-			productReference = 72A5DD362473504300ACC17F /* checkPerson.app */;
+			productReference = 72A5DD362473504300ACC17F /* Registraduría.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -428,7 +428,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.bosque.checkPerson;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Registraduría";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -448,7 +448,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.bosque.checkPerson;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Registraduría";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

@@ -13,6 +13,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var passTextField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
     
+//    Configuración de la interfaz gráfica
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -39,6 +40,7 @@ class LoginViewController: UIViewController {
                     self.present(vc, animated: true, completion: nil)
                 }
             }
+            
             if !logged {
                 self.alertView(title: "Ingreso", message: "Por favor verifique su número de identificación y contraseña")
             }
