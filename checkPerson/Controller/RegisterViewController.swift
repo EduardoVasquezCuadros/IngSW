@@ -121,17 +121,22 @@ class RegisterViewController: UIViewController {
         }
         
         if name.isEmpty || lastName.isEmpty || pass.isEmpty || email.isEmpty || force.isEmpty || id.isEmpty || status.isEmpty {
-            self.alertView(title: "Registro", message: "Por favor introduzca toda la información")
+            self.alertView(title: "Registro", message: "Por favor introduzca toda la información en los campos de texto.")
+            return false
+        }
+        
+        if id.count <= 5 || id.count >= 10 {
+            self.alertView(title: "Registro", message: "Por favor verifique la cantidad de números de su cédula de ciudadanía.")
             return false
         }
         
         if !isValidEmail(email: email) {
-            self.alertView(title: "Registro", message: "Por favor verifique su dirección de correo electrónico")
+            self.alertView(title: "Registro", message: "Por favor verifique su dirección de correo electrónico porque no cumple con los criterios jaimemora@unbosque.edu.co")
             return false
         }
         
-        if !validate(password: pass) && pass.count >= 8  {
-            self.alertView(title: "Registro", message: "Recuerde que su contraseña debe tener una mayúscula un número y debe ser mayor a 7 caracteres")
+        if !validate(password: pass) || pass.count < 8  {
+            self.alertView(title: "Registro", message: "Recuerde que su contraseña debe tener una mayúscula, un número y debe ser mayor a 7 caracteres.")
             return false
         }
         
