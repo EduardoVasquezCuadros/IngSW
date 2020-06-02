@@ -17,14 +17,18 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate, 
     @IBOutlet weak var searchButton: UIButton!
     @IBOutlet weak var scannerButton: UIButton!
     @IBOutlet weak var nameLabel: UILabel!
-    
+
     lazy var vision = Vision.vision()
     let session = AVCaptureSession()
     var barcodeDetector :VisionBarcodeDetector?
     var imageLayer: AVCaptureVideoPreviewLayer!
     var name: String = ""
-    
-//    Configuración de la interfaz gráfica
+   
+    /**
+       Configuración de la interfaz gráfica
+       
+       - parameter : nil
+    */
     override func viewDidLoad() {
         super.viewDidLoad()
         setupCamera()
@@ -41,8 +45,11 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate, 
         
         hideKeyboardWhenTappedAround()
     }
-    
-//  Configuración de la camara del dispositivo
+    /**
+       Configuración de camara
+       
+       - parameter sender: nil
+    */
     func setupCamera() {
         session.sessionPreset = AVCaptureSession.Preset.photo
         let captureDevice = AVCaptureDevice.default(for: AVMediaType.video)
@@ -55,7 +62,11 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate, 
         session.addOutput(deviceOutput)
     }
     
-//  Boton de busqueda por texto
+    /**
+       Boton de búsqueda por texto
+       
+       - parameter sender: Button clickeado
+    */
     @IBAction func SearchByText(_ sender: Any) {
         guard let identification = identificationTextField.text else {
             return
@@ -72,13 +83,22 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate, 
         }
     }
     
-//  Botton de búsqueda por scanner
+    /**
+       Boton de búsqueda por scanner
+       
+       - parameter sender: Button clickeado
+    */
     @IBAction func searchByCamera(_ sender: Any) {
         startLiveVideo()
         barcodeDetector = vision.barcodeDetector()
     }
     
-//  Búsqueda de la cédula de la ciudadania
+    /**
+       Búsqueda de la cédula de la ciudadania
+       
+       - parameter identification: Número de cedula a buscar
+       - parameter citizen: lista de ciudadanos para hacer la búsqueda
+    */
     func search(identification: String, citizen: [Citizen]) {
         var founded = false
         var name = ""
@@ -97,7 +117,11 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate, 
         self.showState(check: founded, name: name, lastName: lastName, identification: crimeId)
     }
     
-//  Configuración de la camara del dispositivo
+    /**
+       Mostrar la interfaz gráfica del lector de PDF147
+       
+       - parameter identification: nil
+    */
     private func startLiveVideo() {
         identificationTextField.resignFirstResponder()
         
@@ -109,7 +133,13 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate, 
         session.startRunning()
     }
     
-//  Función que se acciona automaticamente cuando el scanner consigue un código PDF147
+    /**
+       Función que se acciona automaticamente cuando el scanner consigue un código PDF147
+       
+       - parameter output: Lectura que se esta llevando acabo por la camara
+       - parameter didOutput: Información capturada por la camara
+       - parameter connection: Tipo de códigos que puede capturar la camara
+    */
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         
         if let barcodeDetector = self.barcodeDetector {
@@ -134,7 +164,13 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate, 
         }
     }
     
-//  Se presenta la pantalla que indica si el ciudadano es requerido o no
+    /**
+       Se presenta la pantalla que indica si el ciudadano es requerido o no
+       
+       - parameter check: Variable que indica si el ciudadano es requerido
+       - parameter name: Nombre del ciudadano requerido
+       - parameter lastname: Apellido del ciudadano requerido
+    */
     private func showState(check: Bool, name: String, lastName: String, identification: String) {
         let viewC = CheckViewController()
         self.present(viewC, animated: true, completion: nil)

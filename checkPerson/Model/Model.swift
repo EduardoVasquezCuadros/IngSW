@@ -13,7 +13,11 @@ import Firebase
 class Model: NSObject {
     var firDatabaseReference = Database.database().reference()
 
-//  Función que se encarga en traer toda la información del ciudadano y retornarla a la función que la solicito
+    /**
+    Función que se encarga en traer toda la información del ciudadano y retornarla a la función que la solicito
+    
+    - parameter response : variable que respondera asincronamente un array con todos los datos de la tabla de la base de datos que se solicito
+    */
     func citizen(response: @escaping ([Citizen]) -> Void) {
         
         var citizenArray = [Citizen]()
@@ -46,7 +50,11 @@ class Model: NSObject {
         
     }
     
-//  Función que se encarga en traer toda la información del funcionario y retornarla a la función que la solicito
+    /**
+    Función que se encarga en traer toda la información del funcionario y retornarla a la función que la solicito
+    
+    - parameter response : variable que respondera asincronamente un array con todos los datos de la tabla de la base de datos que se solicito
+    */
     func agent(response: @escaping ([Agent]) -> Void) {
         var agentArray = [Agent]()
                 
@@ -78,7 +86,11 @@ class Model: NSObject {
         })
     }
 
-//  Función que se encarga en traer toda la información de la fuerza publica disponible y retornarla a la función que la solicito
+    /**
+    Función que se encarga en traer toda la información de la fuerza publica disponible y retornarla a la función que la solicito
+    
+    - parameter response : variable que respondera asincronamente un array con todos los datos de la tabla de la base de datos que se solicito
+    */
     func force(response: @escaping ([String]) -> Void) {
         var forceArray = [String]()
                 
@@ -101,7 +113,11 @@ class Model: NSObject {
         })
     }
     
-//  Función que se encarga en traer toda la información de rango de fuerza publica disponible y retornarla a la función que la solicito
+    /**
+    Función que se encarga en traer toda la información de rango de fuerza publica disponible y retornarla a la función que la solicito
+    
+    - parameter response : variable que respondera asincronamente un array con todos los datos de la tabla de la base de datos que se solicito
+    */
     func status(response: @escaping ([String]) -> Void) {
         var statusArray = [String]()
                 
@@ -123,7 +139,12 @@ class Model: NSObject {
         })
     }
     
-//  Función que se encarga de registrar al funcionario de la fuerza publica y retorna la respuesta del servidor
+    /**
+    Función que se encarga de registrar al funcionario de la fuerza publica y retorna la respuesta del servidor
+    
+    - parameter agent    : Diccionario llave-valor con toda la información a registrar
+    - parameter response : variable que respondera asincronamente un array con todos los datos de la tabla de la base de datos que se solicito
+    */
     func toRegister(agent:[String:Any], response: @escaping (String) -> Void) {
         
         firDatabaseReference = Database.database().reference()
@@ -140,7 +161,11 @@ class Model: NSObject {
     }
 }
 
-// Estructura local del ciudadano
+/**
+Estructura local del ciudadano
+
+- parameter : nil
+*/
 struct Citizen {
     var name: String
     var lastName: String
@@ -148,7 +173,11 @@ struct Citizen {
     var requered: Bool
 }
 
-// Estructura local del funcionario 
+/**
+Estructura local del funcionario
+
+- parameter : nil
+*/
 struct Agent {
     var name: String
     var lastName: String

@@ -19,20 +19,28 @@ class RegisterViewController: UIViewController {
     @IBOutlet weak var passTextField: UITextField!
     @IBOutlet weak var registerButton: UIButton!
     
-//  Configuración de la interfaz gráfica
+    /**
+     Configuración de la interfaz gráfica
+     
+     - parameter : nil
+     */
     override func viewDidLoad() {
         super.viewDidLoad()
         
         registerButton.layer.cornerRadius = 5
         registerButton.layer.borderWidth = 1
         registerButton.layer.borderColor = UIColor.gray.cgColor
-
+        
         hideKeyboardWhenTappedAround()
         configPickerForce()
         configPickerStatus()
     }
     
-//  Traer información de la base de datos y agregarla a la interfaz grafica
+    /**
+     Traer información de la base de datos y agregarla a la interfaz gráfica
+     
+     - parameter : nil
+     */
     func configPickerForce() {
         let model = Model()
         model.force { (force) in
@@ -47,7 +55,11 @@ class RegisterViewController: UIViewController {
         }
     }
     
-//  Traer información de la base de datos y agregarla a la interfaz grafica
+    /**
+    Traer información de la base de datos y agregarla a la interfaz gráfica
+    
+    - parameter : nil
+    */
     func configPickerStatus() {
         let model = Model()
         model.status { (statusString) in
@@ -62,7 +74,11 @@ class RegisterViewController: UIViewController {
         }
     }
     
-//  Función que verifica la existencia de todos los datos de registro y hace el registro si no existe el usuario en la base de datos
+    /**
+    Función que verifica la existencia de todos los datos de registro y hace el registro si no existe el usuario en la base de datos
+    
+    - parameter sender: botón clickeado
+    */
     @IBAction func registerTapped(_ sender: Any) {
         var registred = false
         
@@ -106,7 +122,13 @@ class RegisterViewController: UIViewController {
         }
     }
     
-//  Función que verificaque todos los datos ingresados por el usuario cumplan con lo solicitado por la base de datos
+    /**
+    Función que verificaque todos los datos ingresados por el usuario cumplan con lo solicitado por la base de datos
+    
+    - parameter :
+     
+    - return : Verificación de los campos del registro
+    */
     func checkingData() -> Bool {
         guard let email = emailTextField.text,
             let pass = passTextField.text,
@@ -143,7 +165,12 @@ class RegisterViewController: UIViewController {
         return true
     }
     
-//  Verificación del formato del email
+    /**
+    Verificación del formato del email
+    
+    - parameter email : email que será verificado
+    - return : Verificación del formato del email
+    */
     func isValidEmail(email: String) -> Bool {
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
         
@@ -151,7 +178,12 @@ class RegisterViewController: UIViewController {
         return emailPred.evaluate(with: email)
     }
     
-//  Verificación de los datos minimos de la contraseña
+    /**
+    Verificación de los datos minimos de la contraseña
+    
+    - parameter password : contraseña que será verificado
+    - return : Verificación del formato de la contraseña
+    */
     func validate(password: String) -> Bool {
         let capitalLetterRegEx  = ".*[A-Z]+.*"
         let texttest = NSPredicate(format:"SELF MATCHES %@", capitalLetterRegEx)
@@ -160,11 +192,16 @@ class RegisterViewController: UIViewController {
         let numberRegEx  = ".*[0-9]+.*"
         let texttest1 = NSPredicate(format:"SELF MATCHES %@", numberRegEx)
         guard texttest1.evaluate(with: password) else { return false }
-                
+        
         return true
     }
 }
 
+/**
+Utilidades gráficas del sistema
+
+- parameter : nil
+*/
 extension UIViewController {
     func hideKeyboardWhenTappedAround() {
         let tapGesture = UITapGestureRecognizer(target: self,

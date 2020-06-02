@@ -13,12 +13,22 @@ class CheckViewController: UIViewController {
     @IBOutlet weak var checkImage: UIImageView!
     @IBOutlet weak var informationText: UILabel!
 
-//    Configuración de la interfaz gráfica
+    /**
+     Configuración de la interfaz gráfica
+   
+        - parameter : nil
+     */
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
-//  Verifica si el usuario esta registrado como requerido y muestra esta información
+    /**
+      Verifica si el usuario esta registrado como requerido y muestra esta información
+    
+         - parameter check: Variable que indica si el ciudadano es requerido
+         - parameter name: Nombre del ciudadano requerido
+         - parameter lastname: Apellido del ciudadano requerido
+      */
     func setupImage(check: Bool, name: String, lastName: String, identification: String) {
         if checkImage != nil {
             let imageName = !check ? "check.png" : "error.png"
@@ -30,7 +40,11 @@ class CheckViewController: UIViewController {
     }
 }
 
-// extensión que pone la primera letra de una palabra en mayuscula
+ /**
+  extensión que pone la primera letra de una palabra en mayuscula
+
+     - parameter : nil
+  */
 extension String {
     func capitalizingFirstLetter() -> String {
         return prefix(1).capitalized + dropFirst()

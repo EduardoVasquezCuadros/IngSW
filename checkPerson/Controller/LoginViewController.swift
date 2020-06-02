@@ -13,7 +13,11 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var passTextField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
     
-//    Configuración de la interfaz gráfica
+    /**
+       Configuración de la interfaz gráfica
+       
+       - parameter : nil
+    */
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -24,7 +28,11 @@ class LoginViewController: UIViewController {
         hideKeyboardWhenTappedAround()
     }
     
-//  Función que verifica si el usuario ya esta registrado y permite ingresar
+    /**
+       Función que verifica si el usuario ya esta registrado y permite ingresar
+       
+       - parameter sender: Boton clickeado
+    */
     @IBAction func login(_ sender: Any) {
         var logged = false
         let model = Model()
